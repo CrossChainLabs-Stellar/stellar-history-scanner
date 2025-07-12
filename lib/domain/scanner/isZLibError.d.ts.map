@@ -1,0 +1,1 @@
+{"version":3,"file":"isZLibError.d.ts","sourceRoot":"","sources":["../../../src/domain/scanner/isZLibError.ts"],"names":[],"mappings":"AAEA,UAAU,SAAS;IAClB,KAAK,EAAE,MAAM,CAAC;IACd,IAAI,EAAE,MAAM,CAAC;IACb,OAAO,EAAE,MAAM,CAAC;CAChB;AACD,wBAAgB,WAAW,CAAC,KAAK,EAAE,OAAO,GAAG,KAAK,IAAI,SAAS,CAO9D"}

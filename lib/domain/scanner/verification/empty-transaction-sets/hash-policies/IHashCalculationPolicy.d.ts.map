@@ -1,0 +1,1 @@
+{"version":3,"file":"IHashCalculationPolicy.d.ts","sourceRoot":"","sources":["../../../../../../src/domain/scanner/verification/empty-transaction-sets/hash-policies/IHashCalculationPolicy.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,sBAAsB;IACtC,aAAa,CAAC,wBAAwB,EAAE,MAAM,GAAG,SAAS,GAAG,MAAM,CAAC;CACpE"}

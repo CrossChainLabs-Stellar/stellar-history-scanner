@@ -1,0 +1,1 @@
+{"version":3,"file":"PropertyMapper.d.ts","sourceRoot":"","sources":["../src/PropertyMapper.ts"],"names":[],"mappings":"AAAA,MAAM,CAAC,OAAO,OAAO,cAAc;IAClC,MAAM,CAAC,aAAa,CACnB,GAAG,EAAE,GAAG,EACR,YAAY,EAAE,GAAG,EACjB,gBAAgB,EAAE,MAAM,EAAE;IAS3B,MAAM,CAAC,WAAW,CAAC,QAAQ,EAAE,MAAM,EAAE,GAAG,EAAE,GAAG,EAAE,YAAY,EAAE,GAAG;CAKhE"}

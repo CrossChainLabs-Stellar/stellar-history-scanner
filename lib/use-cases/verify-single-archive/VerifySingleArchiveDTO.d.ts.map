@@ -1,0 +1,1 @@
+{"version":3,"file":"VerifySingleArchiveDTO.d.ts","sourceRoot":"","sources":["../../../src/use-cases/verify-single-archive/VerifySingleArchiveDTO.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,sBAAsB;IACtC,UAAU,EAAE,MAAM,CAAC;IACnB,UAAU,CAAC,EAAE,MAAM,CAAC;IACpB,QAAQ,CAAC,EAAE,MAAM,CAAC;IAClB,cAAc,CAAC,EAAE,MAAM,CAAC;CACxB"}

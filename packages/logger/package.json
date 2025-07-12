@@ -1,0 +1,17 @@
+{
+	"name": "logger",
+	"description": "Abstract logger",
+	"scripts": {
+		"preversion": "pnpm run build",
+		"build": "../../node_modules/typescript/bin/tsc  --declaration",
+		"test:unit": "jest"
+	},
+	"author": "pieterjan84@github",
+	"license": "MIT",
+	"main": "lib/index.js",
+	"types": "lib/index.d.ts",
+	"dependencies": {
+		"pino": "9.4.0"
+	},
+	"devDependencies": {}
+}

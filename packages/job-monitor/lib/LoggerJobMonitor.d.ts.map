@@ -1,0 +1,1 @@
+{"version":3,"file":"LoggerJobMonitor.d.ts","sourceRoot":"","sources":["../src/LoggerJobMonitor.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAE,aAAa,EAAE,MAAM,cAAc,CAAC;AACzD,OAAO,EAAE,MAAM,EAAE,MAAM,QAAQ,CAAC;AAGhC,qBAAa,gBAAiB,YAAW,UAAU;IACtC,OAAO,CAAC,MAAM;gBAAN,MAAM,EAAE,MAAM;IAE5B,OAAO,CAAC,GAAG,EAAE,aAAa;CAOhC"}

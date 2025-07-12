@@ -1,0 +1,1 @@
+{"version":3,"file":"quorum-slices-generator.d.ts","sourceRoot":"","sources":["../src/quorum-slices-generator.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,SAAS,EAAE,MAAM,SAAS,CAAC;AAEpC,qBAAa,qBAAqB;IACjC,SAAS,CAAC,SAAS,EAAE,SAAS,GAAG,MAAM,EAAE,EAAE;IAkB3C,sBAAsB,CACrB,CAAC,EAAE,MAAM,EACT,YAAY,EAAE,CAAC,MAAM,GAAC,SAAS,CAAC,EAAE;CA8BnC"}

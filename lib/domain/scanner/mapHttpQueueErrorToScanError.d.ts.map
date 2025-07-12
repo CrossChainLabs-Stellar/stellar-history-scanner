@@ -1,0 +1,1 @@
+{"version":3,"file":"mapHttpQueueErrorToScanError.d.ts","sourceRoot":"","sources":["../../../src/domain/scanner/mapHttpQueueErrorToScanError.ts"],"names":[],"mappings":"AAAA,OAAO,EAAqB,UAAU,EAAE,MAAM,aAAa,CAAC;AAC5D,OAAO,kBAAkB,CAAC;AAC1B,OAAO,EAAE,SAAS,EAAiB,MAAM,mBAAmB,CAAC;AAE7D,wBAAgB,4BAA4B,CAAC,KAAK,EAAE,UAAU,GAAG,SAAS,CAgBzE"}

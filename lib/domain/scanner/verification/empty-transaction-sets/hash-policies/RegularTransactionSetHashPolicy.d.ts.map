@@ -1,0 +1,1 @@
+{"version":3,"file":"RegularTransactionSetHashPolicy.d.ts","sourceRoot":"","sources":["../../../../../../src/domain/scanner/verification/empty-transaction-sets/hash-policies/RegularTransactionSetHashPolicy.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,sBAAsB,EAAE,MAAM,0BAA0B,CAAC;AAGlE,qBAAa,+BAAgC,YAAW,sBAAsB;IAC7E,aAAa,CAAC,wBAAwB,EAAE,MAAM,GAAG,MAAM;CAOvD"}

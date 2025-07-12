@@ -1,0 +1,45 @@
+import { NodeGeoData } from './node-geo-data';
+import { NodeStatistics } from './node-statistics';
+import { QuorumSet } from './quorum-set';
+import { NodeV1 } from './dto/node-v1';
+export declare class Node {
+    ip: string;
+    port: number;
+    publicKey: string;
+    name: string | null;
+    host: string | null;
+    ledgerVersion: number | null;
+    overlayVersion: number | null;
+    overlayMinVersion: number | null;
+    versionStr: string | null;
+    quorumSet: QuorumSet;
+    quorumSetHashKey: string | null;
+    active: boolean;
+    activeInScp: boolean;
+    geoData: NodeGeoData;
+    statistics: NodeStatistics;
+    dateDiscovered: Date;
+    dateUpdated: Date;
+    overLoaded: boolean;
+    isFullValidator: boolean;
+    isValidating: boolean;
+    homeDomain: string | null;
+    index: number;
+    historyUrl: string | null;
+    alias: string | null;
+    isp: string | null;
+    organizationId: string | null;
+    unknown: boolean;
+    historyArchiveHasError: boolean;
+    connectivityError: boolean;
+    stellarCoreVersionBehind: boolean;
+    lag: number | null;
+    constructor(publicKey: string, ip?: string, port?: number);
+    get displayName(): string;
+    get key(): string;
+    get isValidator(): boolean;
+    toJSON(): NodeV1;
+    toString(): string;
+    static fromNodeV1DTO(nodeV1DTO: NodeV1): Node;
+}
+//# sourceMappingURL=node.d.ts.map

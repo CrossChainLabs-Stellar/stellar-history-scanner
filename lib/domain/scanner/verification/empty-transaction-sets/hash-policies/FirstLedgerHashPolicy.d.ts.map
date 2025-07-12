@@ -1,0 +1,1 @@
+{"version":3,"file":"FirstLedgerHashPolicy.d.ts","sourceRoot":"","sources":["../../../../../../src/domain/scanner/verification/empty-transaction-sets/hash-policies/FirstLedgerHashPolicy.ts"],"names":[],"mappings":"AAAA,OAAO,kBAAkB,CAAC;AAE1B,OAAO,EAAE,sBAAsB,EAAE,MAAM,0BAA0B,CAAC;AAElE,qBAAa,qBAAsB,YAAW,sBAAsB;IACnE,aAAa;CAGb"}

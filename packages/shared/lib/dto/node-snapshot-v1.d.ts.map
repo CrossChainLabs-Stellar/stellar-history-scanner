@@ -1,0 +1,1 @@
+{"version":3,"file":"node-snapshot-v1.d.ts","sourceRoot":"","sources":["../../src/dto/node-snapshot-v1.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,cAAc,EAAC,MAAM,KAAK,CAAC;AACnC,OAAO,EAAC,MAAM,EAAC,MAAM,WAAW,CAAC;AAEjC,MAAM,WAAW,cAAc;IAC9B,SAAS,EAAE,MAAM,CAAC;IAClB,OAAO,EAAE,MAAM,CAAC;IAChB,IAAI,EAAE,MAAM,CAAC;CACb;AAGD,eAAO,MAAM,oBAAoB,EAAE,cAAc,CAAC,cAAc,CAsB/D,CAAC"}

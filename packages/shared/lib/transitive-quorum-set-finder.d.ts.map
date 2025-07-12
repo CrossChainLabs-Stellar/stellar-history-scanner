@@ -1,0 +1,1 @@
+{"version":3,"file":"transitive-quorum-set-finder.d.ts","sourceRoot":"","sources":["../src/transitive-quorum-set-finder.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,cAAc,CAAC;AAI7C,qBAAa,yBAAyB;IACrC,MAAM,CAAC,IAAI,CACV,SAAS,EAAE,aAAa,EACxB,YAAY,EAAE,GAAG,CAAC,MAAM,EAAE,aAAa,CAAC;IASzC,OAAO,CAAC,MAAM,CAAC,YAAY;CAqB3B"}

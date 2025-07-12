@@ -1,0 +1,44 @@
+{
+	"name": "history-scanner",
+	"description": "Scan history archives",
+	"scripts": {
+		"build": "tsc --declaration",
+		"scan": "pnpm run build; node lib/infrastructure/cli/verify-single-archive.js  https://history.core-live-b.sorobanpulse.app 20050000 20100000 10"
+	},
+	"types": "lib/index.d.ts",
+	"main": "index.js",
+	"license": "MIT",
+	"engines": {
+		"node": "20.x",
+		"pnpm": "9.15.0"
+	},
+	"private": true,
+	"dependencies": {
+		"@stellar/stellar-base": "13.0.1",
+		"@stellarbeat/stellar-history-archive-hasher": "0.7.0",
+		"ajv": "^8.17.1",
+		"custom-error": "workspace:*",
+		"dotenv": "^17.2.0",
+		"exception-logger": "workspace:*",
+		"history-scanner-dto": "workspace:*",
+		"http-helper": "workspace:*",
+		"inversify": "^6.0.2",
+		"jest": "29.7.0",
+		"jest-mock-extended": "4.0.0-beta1",
+		"job-monitor": "workspace:*",
+		"logger": "workspace:*",
+		"neverthrow": "^6.2.2",
+		"reflect-metadata": "^0.2.2",
+		"shared": "workspace:*",
+		"validator": "^13.12.0",
+		"workerpool": "^6.5.1",
+		"yn": "^3.1.1"
+	},
+	"devDependencies": {
+		"@types/express": "^4.17.21",
+		"@types/node": "^24.0.13",
+		"@types/workerpool": "^6.4.7",
+		"express": "^4.21.2",
+		"supertest": "^7.0.0"
+	}
+}
