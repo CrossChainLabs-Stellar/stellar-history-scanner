@@ -3,7 +3,7 @@
 	"description": "Scan history archives",
 	"scripts": {
 		"build": "tsc --declaration",
-		"scan-history": "pnpm run build; node lib/infrastructure/cli/verify-single-archive.js  https://history.core-live-b.sorobanpulse.app 20900000 20950000 10"
+		"scan-history": "node lib/infrastructure/cli/verify-single-archive.js $*"
 	},
 	"types": "lib/index.d.ts",
 	"main": "index.js",

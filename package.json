@@ -1,6 +1,5 @@
 {
 	"name": "@crosschainlabs/stellar-history-scanner",
-	"private": true,
 	"version": "0.1.0",
 	"description": "Scan history archives",
 	"scripts": {
@@ -21,10 +20,19 @@
 	"keywords": [],
 	"author": "CROSSCHAIN LABS",
 	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/CrossChainLabs/stellar-history-scanner.git"
+	},
+	"bugs": {
+		"url": "https://github.com/CrossChainLabs/stellar-history-scanner/issues"
+	},
+	"homepage": "https://github.com/CrossChainLabs/stellar-history-scanner#readme",
 	"engines": {
 		"node": "20.x",
 		"pnpm": "9.15.0"
 	},
+	"publishConfig": { "access": "public" },
 	"type": "module",
 	"dependencies": {
 		"@stellar/stellar-base": "13.0.1",
