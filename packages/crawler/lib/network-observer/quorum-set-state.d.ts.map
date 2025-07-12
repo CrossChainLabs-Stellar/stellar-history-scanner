@@ -1,0 +1,1 @@
+{"version":3,"file":"quorum-set-state.d.ts","sourceRoot":"","sources":["../../src/network-observer/quorum-set-state.ts"],"names":[],"mappings":"AAEA,MAAM,MAAM,aAAa,GAAG,MAAM,CAAC;AAEnC,qBAAa,cAAc;IAC1B,eAAe,2BAA4C;IAC3D,oBAAoB,2BAA4C;IAChE,yBAAyB,cAA4B;IACrD,iBAAiB;iBAGN,MAAM,CAAC,OAAO;cACjB,aAAa;OAEjB;CACJ"}

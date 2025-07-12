@@ -1,0 +1,1 @@
+{"version":3,"file":"ledger-validator.d.ts","sourceRoot":"","sources":["../../../../../src/network-observer/peer-event-handler/stellar-message-handlers/scp-envelope/ledger-validator.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,MAAM,EAAE,MAAM,qBAAqB,CAAC;AAK7C,wBAAgB,qBAAqB,CACpC,kBAAkB,EAAE,MAAM,EAC1B,cAAc,EAAE,MAAM,GACpB,OAAO,CAYT"}

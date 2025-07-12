@@ -1,19 +1,11 @@
 {
-	"extends": "./tsconfig.base.json",
-	"compilerOptions": {
-		"experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-		"outDir": "lib",
-		"rootDir": "src",
-		"baseUrl": ".",
-		"composite": true
-	},
-	"include": ["src/**/*.ts"],
+	"include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
 	"exclude": [
 		"node_modules/**/*",
 		"src/**/__tests__/*",
 		"src/**/__mocks__/*",
-		"src/**/__fixtures__/*"
+		"src/**/__fixtures__/*",
+		"*.test.ts"
 	],
 	"references": [
 		{ "path": "./packages/custom-error" },
@@ -23,6 +15,9 @@
 		{ "path": "./packages/http-helper" },
 		{ "path": "./packages/job-monitor" },
 		{ "path": "./packages/exception-logger" },
-		{ "path": "./packages/node-connector" }
+		{ "path": "./packages/node-connector" },
+		{ "path": "./packages/crawler" },
+		{ "path": "./packages/scp-simulation" },
+		{ "path": "./apps/history-scanner" }
 	]
 }

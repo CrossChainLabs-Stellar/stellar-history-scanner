@@ -1,0 +1,1 @@
+{"version":3,"file":"MessageReceived.d.ts","sourceRoot":"","sources":["../../../src/federated-voting/event/MessageReceived.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,YAAY,CAAC;AACrC,OAAO,EAAE,YAAY,EAAE,MAAM,kCAAkC,CAAC;AAEhE,qBAAa,eAAgB,SAAQ,YAAY;aAGpB,OAAO,EAAE,OAAO;IAF5C,OAAO,SAAqB;gBAEA,OAAO,EAAE,OAAO;IAI5C,QAAQ,IAAI,MAAM;CAGlB"}

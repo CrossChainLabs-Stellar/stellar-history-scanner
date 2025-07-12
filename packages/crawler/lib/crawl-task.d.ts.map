@@ -1,0 +1,1 @@
+{"version":3,"file":"crawl-task.d.ts","sourceRoot":"","sources":["../src/crawl-task.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,WAAW,EAAE,MAAM,gBAAgB,CAAC;AAC7C,OAAO,EAAE,KAAK,EAAE,MAAM,SAAS,CAAC;AAEhC,MAAM,WAAW,SAAS;IACzB,WAAW,EAAE,WAAW,CAAC;IACzB,KAAK,EAAE,KAAK,CAAC;IACb,eAAe,EAAE,MAAM,IAAI,CAAC;CAC5B"}

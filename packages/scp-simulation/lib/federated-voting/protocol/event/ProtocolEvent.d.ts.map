@@ -1,0 +1,1 @@
+{"version":3,"file":"ProtocolEvent.d.ts","sourceRoot":"","sources":["../../../../src/federated-voting/protocol/event/ProtocolEvent.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,KAAK,EAAE,MAAM,eAAe,CAAC;AAEtC,8BAAsB,aAAc,YAAW,KAAK;aAIvB,SAAS,EAAE,MAAM;IAH7C,IAAI,SAAmB;IACvB,QAAQ,CAAC,QAAQ,CAAC,OAAO,EAAE,MAAM,CAAC;gBAEN,SAAS,EAAE,MAAM;IAE7C,QAAQ,CAAC,QAAQ,IAAI,MAAM;CAC3B"}

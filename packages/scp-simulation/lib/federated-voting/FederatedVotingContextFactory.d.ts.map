@@ -1,0 +1,1 @@
+{"version":3,"file":"FederatedVotingContextFactory.d.ts","sourceRoot":"","sources":["../../src/federated-voting/FederatedVotingContextFactory.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,sBAAsB,EAAE,MAAM,0BAA0B,CAAC;AAIlE,qBAAa,6BAA6B;IACzC,MAAM,CAAC,MAAM,CACZ,qBAAqB,UAAO,EAC5B,oBAAoB,UAAQ,GAC1B,sBAAsB;CAMzB"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"ConnectionAdded.d.ts","sourceRoot":"","sources":["../../../src/overlay/event/ConnectionAdded.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,SAAS,EAAE,MAAM,YAAY,CAAC;AACvC,OAAO,EAAE,YAAY,EAAE,MAAM,gBAAgB,CAAC;AAE9C,qBAAa,eAAgB,SAAQ,YAAY;aAI/B,CAAC,EAAE,SAAS;aACZ,CAAC,EAAE,SAAS;IAJ7B,OAAO,SAAqB;gBAGX,CAAC,EAAE,SAAS,EACZ,CAAC,EAAE,SAAS;IAK7B,QAAQ,IAAI,MAAM;CAGlB"}

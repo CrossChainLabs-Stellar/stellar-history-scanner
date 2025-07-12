@@ -1,0 +1,1 @@
+{"version":3,"file":"StatementDTOMapper.d.ts","sourceRoot":"","sources":["../../src/api/StatementDTOMapper.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,SAAS,EAAE,MAAM,8BAA8B,CAAC;AACzD,OAAO,EAAE,YAAY,EAAE,MAAM,gBAAgB,CAAC;AAE9C,qBAAa,kBAAkB;IAC9B,MAAM,CAAC,cAAc,CAAC,SAAS,EAAE,SAAS,GAAG,YAAY;CAKzD"}

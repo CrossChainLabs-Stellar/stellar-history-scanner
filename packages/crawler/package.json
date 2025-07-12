@@ -1,0 +1,21 @@
+{
+	"name": "crawler",
+	"private": true,
+	"description": "Crawl the stellar network",
+	"scripts": {
+		"build": "tsc --declaration",
+		"examples:crawl": "pnpm run build; NODE_PATH=node_modules node examples/crawl"
+	},
+	"main": "lib/index.js",
+	"types": "lib/index.d.ts",
+	"author": "pieterjan84@github",
+	"license": "MIT",
+	"dependencies": {
+		"node-connector": "workspace:*",
+		"shared": "workspace:*",
+		"async": "^3.2.6"
+	},
+	"devDependencies": {
+		"@types/async": "^3.2.7"
+	}
+}

@@ -1,0 +1,1 @@
+{"version":3,"file":"OverlayEvent.d.ts","sourceRoot":"","sources":["../../../src/overlay/event/OverlayEvent.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,KAAK,EAAE,MAAM,YAAY,CAAC;AAEnC,8BAAsB,YAAa,YAAW,KAAK;aAKtB,SAAS,EAAE,MAAM;IAJ7C,IAAI,SAAkB;IAEtB,QAAQ,CAAC,QAAQ,CAAC,OAAO,EAAE,MAAM,CAAC;gBAEN,SAAS,EAAE,MAAM;IAE7C,QAAQ,CAAC,QAAQ,IAAI,MAAM;CAC3B"}

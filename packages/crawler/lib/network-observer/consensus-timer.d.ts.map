@@ -1,0 +1,1 @@
+{"version":3,"file":"consensus-timer.d.ts","sourceRoot":"","sources":["../../src/network-observer/consensus-timer.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,KAAK,EAAE,MAAM,oBAAoB,CAAC;AAE3C,qBAAa,cAAc;IACd,OAAO,CAAC,KAAK;IAAS,OAAO,CAAC,kBAAkB;gBAAxC,KAAK,EAAE,KAAK,EAAU,kBAAkB,EAAE,MAAM;IAEpE,KAAK,CAAC,QAAQ,EAAE,MAAM,IAAI;IAI1B,IAAI;CAGJ"}

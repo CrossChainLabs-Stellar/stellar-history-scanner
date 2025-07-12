@@ -1,11 +1,11 @@
 {
 	"compilerOptions": {
-		"lib": ["ES2022"],
+		"lib": ["ES2023"],
 		"incremental": true,
 		"target": "ES2022",
 		"module": "Node16",
 		"moduleResolution": "Node16",
-		"types": ["node", "jest", "reflect-metadata", "dotenv"],
+		"types": ["node", "jest", "reflect-metadata"],
 		"noUnusedParameters": false,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,

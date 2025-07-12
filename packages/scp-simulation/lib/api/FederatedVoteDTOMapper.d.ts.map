@@ -1,0 +1,1 @@
+{"version":3,"file":"FederatedVoteDTOMapper.d.ts","sourceRoot":"","sources":["../../src/api/FederatedVoteDTOMapper.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,4BAA4B,EAAE,MAAM,2DAA2D,CAAC;AACzG,OAAO,EAAE,gBAAgB,EAAE,MAAM,oBAAoB,CAAC;AAGtD,qBAAa,sBAAsB;IAClC,MAAM,CAAC,KAAK,CACX,oBAAoB,EAAE,4BAA4B,EAClD,WAAW,UAAQ,GACjB,gBAAgB;CAgBnB"}

@@ -1,0 +1,886 @@
+{
+	"serializeVersion": "1.0.0",
+	"id": "voting-succeeded-despite-node-crash",
+	"name": "Voting succeeded: despite node crash",
+	"description": "In this scenario, Alice will crash but the vote will go through, demonstrating liveness",
+	"isOverlayFullyConnected": true,
+	"isOverlayGossipEnabled": false,
+	"simulationSteps": [
+		{
+			"userActions": [
+				{
+					"type": "UserAction",
+					"subType": "AddNode",
+					"publicKey": "Alice",
+					"quorumSet": {
+						"threshold": 3,
+						"validators": ["Bob", "Chad", "Steve", "Daisy"],
+						"innerQuorumSets": []
+					}
+				},
+				{
+					"type": "UserAction",
+					"subType": "AddNode",
+					"publicKey": "Bob",
+					"quorumSet": {
+						"threshold": 3,
+						"validators": ["Alice", "Chad", "Steve", "Daisy"],
+						"innerQuorumSets": []
+					}
+				},
+				{
+					"type": "UserAction",
+					"subType": "AddNode",
+					"publicKey": "Chad",
+					"quorumSet": {
+						"threshold": 3,
+						"validators": ["Alice", "Bob", "Steve", "Daisy"],
+						"innerQuorumSets": []
+					}
+				},
+				{
+					"type": "UserAction",
+					"subType": "AddNode",
+					"publicKey": "Steve",
+					"quorumSet": {
+						"threshold": 3,
+						"validators": ["Bob", "Chad", "Daisy", "Alice"],
+						"innerQuorumSets": []
+					}
+				},
+				{
+					"type": "UserAction",
+					"subType": "AddNode",
+					"publicKey": "Daisy",
+					"quorumSet": {
+						"threshold": 3,
+						"validators": ["Steve", "Chad", "Alice", "Bob"],
+						"innerQuorumSets": []
+					}
+				},
+				{
+					"type": "UserAction",
+					"subType": "VoteOnStatement",
+					"publicKey": "Bob",
+					"statement": "pizza"
+				},
+				{
+					"type": "UserAction",
+					"subType": "VoteOnStatement",
+					"publicKey": "Daisy",
+					"statement": "pizza"
+				},
+				{
+					"type": "UserAction",
+					"subType": "VoteOnStatement",
+					"publicKey": "Chad",
+					"statement": "pizza"
+				},
+				{
+					"type": "UserAction",
+					"subType": "VoteOnStatement",
+					"publicKey": "Steve",
+					"statement": "pizza"
+				},
+				{
+					"type": "UserAction",
+					"subType": "VoteOnStatement",
+					"publicKey": "Alice",
+					"statement": "burger"
+				}
+			],
+			"protocolActions": [],
+			"previousStepHash": ""
+		},
+		{
+			"userActions": [],
+			"protocolActions": [
+				{
+					"type": "ProtocolAction",
+					"subType": "Broadcast",
+					"broadcaster": "Bob",
+					"payload": {
+						"statement": "pizza",
+						"isVoteToAccept": false,
+						"publicKey": "Bob",
+						"quorumSet": {
+							"threshold": 3,
+							"validators": ["Alice", "Chad", "Steve", "Daisy"],
+							"innerQuorumSets": []
+						}
+					},
+					"neighborBlackList": [],
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "Broadcast",
+					"broadcaster": "Daisy",
+					"payload": {
+						"statement": "pizza",
+						"isVoteToAccept": false,
+						"publicKey": "Daisy",
+						"quorumSet": {
+							"threshold": 3,
+							"validators": ["Steve", "Chad", "Alice", "Bob"],
+							"innerQuorumSets": []
+						}
+					},
+					"neighborBlackList": [],
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "Broadcast",
+					"broadcaster": "Chad",
+					"payload": {
+						"statement": "pizza",
+						"isVoteToAccept": false,
+						"publicKey": "Chad",
+						"quorumSet": {
+							"threshold": 3,
+							"validators": ["Alice", "Bob", "Steve", "Daisy"],
+							"innerQuorumSets": []
+						}
+					},
+					"neighborBlackList": [],
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "Broadcast",
+					"broadcaster": "Steve",
+					"payload": {
+						"statement": "pizza",
+						"isVoteToAccept": false,
+						"publicKey": "Steve",
+						"quorumSet": {
+							"threshold": 3,
+							"validators": ["Bob", "Chad", "Daisy", "Alice"],
+							"innerQuorumSets": []
+						}
+					},
+					"neighborBlackList": [],
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "Broadcast",
+					"broadcaster": "Alice",
+					"payload": {
+						"statement": "burger",
+						"isVoteToAccept": false,
+						"publicKey": "Alice",
+						"quorumSet": {
+							"threshold": 3,
+							"validators": ["Bob", "Chad", "Steve", "Daisy"],
+							"innerQuorumSets": []
+						}
+					},
+					"neighborBlackList": ["Bob", "Chad", "Steve", "Daisy"],
+					"isDisrupted": true
+				}
+			],
+			"previousStepHash": "206287036"
+		},
+		{
+			"userActions": [],
+			"protocolActions": [
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Bob",
+						"receiver": "Alice",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": false,
+							"publicKey": "Bob",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Alice", "Chad", "Steve", "Daisy"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": true
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Bob",
+						"receiver": "Chad",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": false,
+							"publicKey": "Bob",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Alice", "Chad", "Steve", "Daisy"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Bob",
+						"receiver": "Steve",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": false,
+							"publicKey": "Bob",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Alice", "Chad", "Steve", "Daisy"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Bob",
+						"receiver": "Daisy",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": false,
+							"publicKey": "Bob",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Alice", "Chad", "Steve", "Daisy"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Daisy",
+						"receiver": "Alice",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": false,
+							"publicKey": "Daisy",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Steve", "Chad", "Alice", "Bob"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": true
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Daisy",
+						"receiver": "Bob",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": false,
+							"publicKey": "Daisy",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Steve", "Chad", "Alice", "Bob"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Daisy",
+						"receiver": "Chad",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": false,
+							"publicKey": "Daisy",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Steve", "Chad", "Alice", "Bob"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Daisy",
+						"receiver": "Steve",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": false,
+							"publicKey": "Daisy",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Steve", "Chad", "Alice", "Bob"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Chad",
+						"receiver": "Alice",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": false,
+							"publicKey": "Chad",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Alice", "Bob", "Steve", "Daisy"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": true
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Chad",
+						"receiver": "Bob",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": false,
+							"publicKey": "Chad",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Alice", "Bob", "Steve", "Daisy"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Chad",
+						"receiver": "Steve",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": false,
+							"publicKey": "Chad",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Alice", "Bob", "Steve", "Daisy"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Chad",
+						"receiver": "Daisy",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": false,
+							"publicKey": "Chad",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Alice", "Bob", "Steve", "Daisy"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Steve",
+						"receiver": "Alice",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": false,
+							"publicKey": "Steve",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Bob", "Chad", "Daisy", "Alice"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": true
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Steve",
+						"receiver": "Bob",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": false,
+							"publicKey": "Steve",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Bob", "Chad", "Daisy", "Alice"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Steve",
+						"receiver": "Chad",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": false,
+							"publicKey": "Steve",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Bob", "Chad", "Daisy", "Alice"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Steve",
+						"receiver": "Daisy",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": false,
+							"publicKey": "Steve",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Bob", "Chad", "Daisy", "Alice"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": false
+				}
+			],
+			"previousStepHash": "3738628176"
+		},
+		{
+			"userActions": [],
+			"protocolActions": [
+				{
+					"type": "ProtocolAction",
+					"subType": "Broadcast",
+					"broadcaster": "Steve",
+					"payload": {
+						"statement": "pizza",
+						"isVoteToAccept": true,
+						"publicKey": "Steve",
+						"quorumSet": {
+							"threshold": 3,
+							"validators": ["Bob", "Chad", "Daisy", "Alice"],
+							"innerQuorumSets": []
+						}
+					},
+					"neighborBlackList": [],
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "Broadcast",
+					"broadcaster": "Bob",
+					"payload": {
+						"statement": "pizza",
+						"isVoteToAccept": true,
+						"publicKey": "Bob",
+						"quorumSet": {
+							"threshold": 3,
+							"validators": ["Alice", "Chad", "Steve", "Daisy"],
+							"innerQuorumSets": []
+						}
+					},
+					"neighborBlackList": [],
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "Broadcast",
+					"broadcaster": "Chad",
+					"payload": {
+						"statement": "pizza",
+						"isVoteToAccept": true,
+						"publicKey": "Chad",
+						"quorumSet": {
+							"threshold": 3,
+							"validators": ["Alice", "Bob", "Steve", "Daisy"],
+							"innerQuorumSets": []
+						}
+					},
+					"neighborBlackList": [],
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "Broadcast",
+					"broadcaster": "Daisy",
+					"payload": {
+						"statement": "pizza",
+						"isVoteToAccept": true,
+						"publicKey": "Daisy",
+						"quorumSet": {
+							"threshold": 3,
+							"validators": ["Steve", "Chad", "Alice", "Bob"],
+							"innerQuorumSets": []
+						}
+					},
+					"neighborBlackList": [],
+					"isDisrupted": false
+				}
+			],
+			"previousStepHash": "2234069447"
+		},
+		{
+			"userActions": [],
+			"protocolActions": [
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Steve",
+						"receiver": "Alice",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": true,
+							"publicKey": "Steve",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Bob", "Chad", "Daisy", "Alice"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": true
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Steve",
+						"receiver": "Bob",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": true,
+							"publicKey": "Steve",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Bob", "Chad", "Daisy", "Alice"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Steve",
+						"receiver": "Chad",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": true,
+							"publicKey": "Steve",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Bob", "Chad", "Daisy", "Alice"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Steve",
+						"receiver": "Daisy",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": true,
+							"publicKey": "Steve",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Bob", "Chad", "Daisy", "Alice"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Bob",
+						"receiver": "Alice",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": true,
+							"publicKey": "Bob",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Alice", "Chad", "Steve", "Daisy"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": true
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Bob",
+						"receiver": "Chad",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": true,
+							"publicKey": "Bob",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Alice", "Chad", "Steve", "Daisy"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Bob",
+						"receiver": "Steve",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": true,
+							"publicKey": "Bob",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Alice", "Chad", "Steve", "Daisy"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Bob",
+						"receiver": "Daisy",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": true,
+							"publicKey": "Bob",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Alice", "Chad", "Steve", "Daisy"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Chad",
+						"receiver": "Alice",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": true,
+							"publicKey": "Chad",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Alice", "Bob", "Steve", "Daisy"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": true
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Chad",
+						"receiver": "Bob",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": true,
+							"publicKey": "Chad",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Alice", "Bob", "Steve", "Daisy"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Chad",
+						"receiver": "Steve",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": true,
+							"publicKey": "Chad",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Alice", "Bob", "Steve", "Daisy"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Chad",
+						"receiver": "Daisy",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": true,
+							"publicKey": "Chad",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Alice", "Bob", "Steve", "Daisy"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Daisy",
+						"receiver": "Alice",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": true,
+							"publicKey": "Daisy",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Steve", "Chad", "Alice", "Bob"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": true
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Daisy",
+						"receiver": "Bob",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": true,
+							"publicKey": "Daisy",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Steve", "Chad", "Alice", "Bob"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Daisy",
+						"receiver": "Chad",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": true,
+							"publicKey": "Daisy",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Steve", "Chad", "Alice", "Bob"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": false
+				},
+				{
+					"type": "ProtocolAction",
+					"subType": "ReceiveMessage",
+					"message": {
+						"sender": "Daisy",
+						"receiver": "Steve",
+						"vote": {
+							"statement": "pizza",
+							"isVoteToAccept": true,
+							"publicKey": "Daisy",
+							"quorumSet": {
+								"threshold": 3,
+								"validators": ["Steve", "Chad", "Alice", "Bob"],
+								"innerQuorumSets": []
+							}
+						}
+					},
+					"isDisrupted": false
+				}
+			],
+			"previousStepHash": "1043315"
+		},
+		{
+			"userActions": [],
+			"protocolActions": [],
+			"previousStepHash": "314499778"
+		}
+	]
+}
