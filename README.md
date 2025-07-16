@@ -2,26 +2,19 @@
 
 A standalone application for scanning and verifying Stellar history archives.
 
-## Installation and Setup
 
-
-1. **Install** dependencies:
+## Install
 ```bash
-pnpm install
-```
-2. **Build** the scanner:
-
-```
-pnpm build
+npm install -g @crosschainlabs/stellar-history-scanner
 ```
 
 ## Usage
 
+stellar-history-scanner scan-history <historyURL> <fromLedger> <toLedger> <concurrency>
+
+Example
 ```
-pnpm run scan
+stellar-history-scanner scan-history https://history.core-live-a.validator_domain.com 0 1000000 10
 ```
 
-## Attribution
-
-This project was originally inspired by and is based on the [stellarbeat](https://github.com/stellarbeat/stellarbeat) repository.  
-Credit to the original authors for their work and vision.
+[Attribution](./attribution.md)
