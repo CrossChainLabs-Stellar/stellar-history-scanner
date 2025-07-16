@@ -21,21 +21,8 @@ const defaultConfig = {
     historySlowArchiveMaxLedgers: 1000
 };
 function getConfigFromEnv() {
-    // Required env vars validation
-    const required = [
-        'COORDINATOR_API_BASE_URL',
-        'COORDINATOR_API_USERNAME',
-        'COORDINATOR_API_PASSWORD'
-    ];
-    const missing = required.filter((key) => !process.env[key]);
-    if (missing.length) {
-        return (0, neverthrow_1.err)(new Error(`Missing required env vars: ${missing.join(', ')}`));
-    }
     // Optional vars with validation
     const enableSentry = (0, yn_1.default)(process.env.ENABLE_SENTRY) ?? defaultConfig.enableSentry;
-    if (enableSentry && !process.env.SENTRY_DSN) {
-        return (0, neverthrow_1.err)(new Error('SENTRY_DSN required when ENABLE_SENTRY is true'));
-    }
     const historyMaxFileMs = process.env.HISTORY_MAX_FILE_MS
         ? Number(process.env.HISTORY_MAX_FILE_MS)
         : defaultConfig.historyMaxFileMs;

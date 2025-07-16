@@ -28,10 +28,6 @@ async function main() {
     if (process.argv[3] === '0') {
         loop = false;
     }
-    console.log({
-        persist: persist,
-        loop: loop
-    });
     await verifyArchives.execute({
         persist: persist,
         loop: loop

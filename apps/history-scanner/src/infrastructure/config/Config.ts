@@ -31,29 +31,13 @@ const defaultConfig = {
 };
 
 export function getConfigFromEnv(): Result<Config, Error> {
-	// Required env vars validation
-	const required = [
-		'COORDINATOR_API_BASE_URL',
-		'COORDINATOR_API_USERNAME',
-		'COORDINATOR_API_PASSWORD'
-	];
-
-	const missing = required.filter((key) => !process.env[key]);
-	if (missing.length) {
-		return err(new Error(`Missing required env vars: ${missing.join(', ')}`));
-	}
-
 	// Optional vars with validation
 	const enableSentry =
 		yn(process.env.ENABLE_SENTRY) ?? defaultConfig.enableSentry;
-	if (enableSentry && !process.env.SENTRY_DSN) {
-		return err(new Error('SENTRY_DSN required when ENABLE_SENTRY is true'));
-	}
 
 	const historyMaxFileMs = process.env.HISTORY_MAX_FILE_MS
 		? Number(process.env.HISTORY_MAX_FILE_MS)
 		: defaultConfig.historyMaxFileMs;
-
 	if (isNaN(historyMaxFileMs)) {
 		return err(new Error('HISTORY_MAX_FILE_MS must be a number'));
 	}
@@ -62,7 +46,6 @@ export function getConfigFromEnv(): Result<Config, Error> {
 		.HISTORY_SLOW_ARCHIVE_MAX_LEDGERS
 		? Number(process.env.HISTORY_SLOW_ARCHIVE_MAX_LEDGERS)
 		: defaultConfig.historySlowArchiveMaxLedgers;
-
 	if (isNaN(historySlowArchiveMaxLedgers)) {
 		return err(new Error('HISTORY_SLOW_ARCHIVE_MAX_LEDGERS must be a number'));
 	}
@@ -80,3 +63,4 @@ export function getConfigFromEnv(): Result<Config, Error> {
 		historySlowArchiveMaxLedgers
 	});
 }
+

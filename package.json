@@ -1,14 +1,16 @@
 {
 	"name": "@crosschainlabs/stellar-history-scanner",
-	"version": "0.1.4",
+	"version": "0.2.1",
 	"description": "Scan history archives",
-	"main": "apps/history-scanner/lib/infrastructure/cli/verify-single-archive.js",
-	"types": "apps/history-scanner/lib/infrastructure/cli/verify-single-archive.d.ts",
+	"main": "dist/index.js",
+	"type": "commonjs",
 	"scripts": {
-		"prepare": "pnpm --filter history-scanner run build",
+		"clean": "rm -rf ./dist",
+		"prepare": "pnpm run build",
 		"build:ts": "tsc --build",
 		"build:ts:force": "tsc --build --force",
-		"build": "tsc --build --verbose && pnpm --parallel post-build && pnpm --filter frontend run build",
+        "build:cli": "pnpm run clean && pnpm --filter history-scanner run build && esbuild apps/history-scanner/lib/infrastructure/cli/verify-single-archive.js --bundle --platform=node --target=node20 --format=cjs --outfile=dist/index.js --banner:js='#!/usr/bin/env node\nrequire(\"reflect-metadata\");' && esbuild apps/history-scanner/lib/domain/scanner/hash-worker.js --bundle --platform=node --target=node20 --format=cjs --outfile=dist/hash-worker.js && cp apps/history-scanner/node_modules/@stellarbeat/stellar-history-archive-hasher/stellar_history_archive_hasher_bg.wasm dist/",
+		"build": "pnpm run build:cli && pnpm --parallel post-build && pnpm --filter history-scanner run build",
 		"dev": "pnpm build:ts && concurrently -n backend,frontend -c yellow,blue \"pnpm --filter backend run start-api\" \"pnpm --filter frontend run dev --force --host\"",
 		"test:unit": "jest --testPathIgnorePatterns '\\.integration\\.test' --maxWorkers=50% ",
 		"test:unit:history-scanner": "jest --testPathIgnorePatterns '\\.integration\\.test' --testPathPattern 'apps/history-scanner' --maxWorkers=50% ",
@@ -21,11 +23,11 @@
 		"scan-history": "pnpm --filter history-scanner run scan-history"
 	},
    "bin": {
-     "stellar-history-scanner": "bin/stellar-history-scanner.js"
+     "stellar-history-scanner": "dist/index.js"
    },
    "files": [
-    "apps/history-scanner/lib"
-   ],
+     "dist"
+    ],
 	"keywords": [],
 	"author": "CROSSCHAIN LABS",
 	"license": "MIT",
@@ -42,7 +44,6 @@
 		"pnpm": "9.15.0"
 	},
 	"publishConfig": { "access": "public" },
-	"type": "module",
 	"dependencies": {
 		"@stellar/stellar-base": "13.0.1",
 		"dotenv": "^16.4.7",
@@ -68,6 +69,7 @@
 		"prettier": "3.3.3",
 		"ts-jest": "29.2.5",
 		"ts-node": "10.9.2",
-		"typescript": "^5.8.2"
+		"typescript": "^5.8.2",
+		"@vercel/ncc": "^0.33.0"
 	}
 }
