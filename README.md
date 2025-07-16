@@ -18,4 +18,4 @@ Example
 stellar-history-scanner scan-history https://history.core-live-a.validator_domain.com 0 1000000 10
 ```
 
-[Attribution](./attribution.md)
+[Attribution](./Attribution.md)
