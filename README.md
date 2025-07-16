@@ -9,8 +9,9 @@ npm install -g @crosschainlabs/stellar-history-scanner
 ```
 
 ## Usage
-
+```bash
 stellar-history-scanner scan-history <historyURL> <fromLedger> <toLedger> <concurrency>
+```
 
 Example
 ```
