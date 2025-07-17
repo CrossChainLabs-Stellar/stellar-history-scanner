@@ -1,6 +1,6 @@
 {
 	"name": "@crosschainlabs/stellar-history-scanner",
-	"version": "0.2.2",
+	"version": "0.2.3",
 	"description": "Scan history archives",
 	"main": "dist/index.js",
 	"type": "commonjs",
