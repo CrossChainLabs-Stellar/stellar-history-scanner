@@ -9,7 +9,7 @@
 		"prepare": "pnpm run build",
 		"build:ts": "tsc --build",
 		"build:ts:force": "tsc --build --force",
-        "build:cli": "pnpm run clean && pnpm --filter history-scanner run build && esbuild apps/history-scanner/lib/infrastructure/cli/verify-single-archive.js --bundle --platform=node --target=node20 --format=cjs --outfile=dist/index.js --banner:js='#!/usr/bin/env node\nrequire(\"reflect-metadata\");' && esbuild apps/history-scanner/lib/domain/scanner/hash-worker.js --bundle --platform=node --target=node20 --format=cjs --outfile=dist/hash-worker.js && cp apps/history-scanner/node_modules/@stellarbeat/stellar-history-archive-hasher/stellar_history_archive_hasher_bg.wasm dist/",
+		"build:cli": "pnpm run clean && pnpm --filter history-scanner run build && esbuild apps/history-scanner/lib/infrastructure/cli/verify-single-archive.js --bundle --platform=node --target=node20 --format=cjs --outfile=dist/index.js --banner:js='#!/usr/bin/env node\nrequire(\"reflect-metadata\");' && esbuild apps/history-scanner/lib/domain/scanner/hash-worker.js --bundle --platform=node --target=node20 --format=cjs --outfile=dist/hash-worker.js && cp apps/history-scanner/node_modules/@stellarbeat/stellar-history-archive-hasher/stellar_history_archive_hasher_bg.wasm dist/",
 		"build": "pnpm run build:cli && pnpm --parallel post-build && pnpm --filter history-scanner run build",
 		"dev": "pnpm build:ts && concurrently -n backend,frontend -c yellow,blue \"pnpm --filter backend run start-api\" \"pnpm --filter frontend run dev --force --host\"",
 		"test:unit": "jest --testPathIgnorePatterns '\\.integration\\.test' --maxWorkers=50% ",
@@ -22,12 +22,12 @@
 		"test:all": "pnpm run test:unit && pnpm run test:integration",
 		"scan-history": "pnpm --filter history-scanner run scan-history"
 	},
-   "bin": {
-     "stellar-history-scanner": "dist/index.js"
-   },
-   "files": [
-     "dist"
-    ],
+	"bin": {
+		"stellar-history-scanner": "dist/index.js"
+	},
+	"files": [
+		"dist"
+	],
 	"keywords": [],
 	"author": "CROSSCHAIN LABS",
 	"license": "MIT",
@@ -43,7 +43,9 @@
 		"node": "20.x",
 		"pnpm": "9.15.0"
 	},
-	"publishConfig": { "access": "public" },
+	"publishConfig": {
+		"access": "public"
+	},
 	"dependencies": {
 		"@stellar/stellar-base": "13.0.1",
 		"dotenv": "^16.4.7",
@@ -57,9 +59,11 @@
 		"@types/node": "^22.13.10",
 		"@typescript-eslint/eslint-plugin": "8.24.0",
 		"@typescript-eslint/parser": "8.24.0",
+		"@vercel/ncc": "^0.33.0",
 		"@vue/eslint-config-prettier": "^10.2.0",
 		"@vue/eslint-config-typescript": "^14.5.0",
 		"concurrently": "^9.1.2",
+		"esbuild": "^0.25.6",
 		"eslint": "9.20.0",
 		"eslint-plugin-import": "^2.31.0",
 		"eslint-plugin-vue": "^9.33.0",
@@ -69,7 +73,6 @@
 		"prettier": "3.3.3",
 		"ts-jest": "29.2.5",
 		"ts-node": "10.9.2",
-		"typescript": "^5.8.2",
-		"@vercel/ncc": "^0.33.0"
+		"typescript": "^5.8.2"
 	}
 }

@@ -17,13 +17,14 @@ const inversify_1 = require("inversify");
 const RangeScanner_1 = require("./RangeScanner");
 const ScanSettingsFactory_1 = require("../scan/ScanSettingsFactory");
 const di_types_1 = require("../../infrastructure/di/di-types");
+const logger_1 = require("./logger");
 let Scanner = class Scanner {
     rangeScanner;
     scanJobSettingsFactory;
     logger;
     exceptionLogger;
     rangeSize;
-    constructor(rangeScanner, scanJobSettingsFactory, logger, exceptionLogger, rangeSize = 1000000) {
+    constructor(rangeScanner, scanJobSettingsFactory, logger, exceptionLogger, rangeSize = 10000) {
         this.rangeScanner = rangeScanner;
         this.scanJobSettingsFactory = scanJobSettingsFactory;
         this.logger = logger;
@@ -32,24 +33,20 @@ let Scanner = class Scanner {
     }
     async perform(time, scanJob) {
         console.time('scan');
-        this.logger.info('Starting scan', {
-            url: scanJob.url.value,
-            isStartOfChain: scanJob.isNewScanChainJob(),
-            chainInitDate: scanJob.chainInitDate
-        });
         const scanSettingsOrError = await this.scanJobSettingsFactory.determineSettings(scanJob);
         if (scanSettingsOrError.isErr()) {
             const error = scanSettingsOrError.error;
             return scanJob.createFailedScanCouldNotDetermineSettings(time, new Date(), error);
         }
         const scanSettings = scanSettingsOrError.value;
-        this.logger.info('Scan settings', {
+        (0, logger_1.logWithTimestamp)('Starting scan fromLedger:', scanSettings.fromLedger, 'toLedger:', scanSettings.toLedger);
+        /*this.logger.info('Scan settings', {
             url: scanJob.url.value,
             fromLedger: scanSettings.fromLedger,
             toLedger: scanSettings.toLedger,
             concurrency: scanSettings.concurrency,
             isSlowArchive: scanSettings.isSlowArchive
-        });
+        });*/
         const scanResult = await this.scanInRanges(scanJob.url, scanSettings);
         const scan = scanJob.createScanFromScanResult(time, new Date(), scanSettings, scanResult);
         console.timeEnd('scan');
@@ -66,10 +63,35 @@ let Scanner = class Scanner {
             : scanSettings.toLedger;
         let alreadyScannedBucketHashes = new Set();
         let error;
+        // calculate how many chunks (ranges) we’ll scan in total
+        const totalRanges = Math.ceil((scanSettings.toLedger - scanSettings.fromLedger) / this.rangeSize);
+        let completedRanges = 0;
+        let cumulativeDurationMs = 0;
         while (rangeFromLedger < scanSettings.toLedger && !error) {
-            console.time('range_scan');
+            const startMs = Date.now();
             const rangeResult = await this.rangeScanner.scan(url, scanSettings.concurrency, rangeToLedger, rangeFromLedger, latestLedgerHeader.ledger, latestLedgerHeader.hash, alreadyScannedBucketHashes);
-            console.timeEnd('range_scan');
+            const durationMs = Date.now() - startMs;
+            cumulativeDurationMs += durationMs;
+            completedRanges++;
+            // compute ETA
+            const avgMs = cumulativeDurationMs / completedRanges;
+            const remainingRanges = totalRanges - completedRanges;
+            let etaMs = avgMs * remainingRanges;
+            const hours = Math.floor(etaMs / 3_600_000);
+            etaMs -= hours * 3_600_000;
+            const minutes = Math.floor(etaMs / 60_000);
+            const seconds = Math.round((etaMs % 60_000) / 1000);
+            // build ETA string
+            const etaParts = [];
+            if (hours > 0)
+                etaParts.push(`${hours}h`);
+            if (minutes > 0 || hours > 0)
+                etaParts.push(`${minutes}m`);
+            etaParts.push(`${seconds}s`);
+            const etaStr = etaParts.join(' ');
+            // log progress + ETA
+            const pct = ((completedRanges / totalRanges) * 100).toFixed(1);
+            (0, logger_1.logWithTimestamp)(`Progress ${pct}% , ETA ~${etaStr}`);
             if (rangeResult.isErr()) {
                 error = rangeResult.error;
             }

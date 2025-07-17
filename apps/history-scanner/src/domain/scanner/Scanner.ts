@@ -10,6 +10,7 @@ import { ScanSettings } from '../scan/ScanSettings';
 import { ScanResult } from '../scan/ScanResult';
 import { Url } from 'http-helper';
 import { TYPES } from '../../infrastructure/di/di-types';
+import { logWithTimestamp as log } from './logger';
 
 export interface LedgerHeader {
 	ledger: number;
@@ -23,17 +24,11 @@ export class Scanner {
 		private scanJobSettingsFactory: ScanSettingsFactory,
 		@inject('Logger') private logger: Logger,
 		@inject(TYPES.ExceptionLogger) private exceptionLogger: ExceptionLogger,
-		private readonly rangeSize = 1000000
+		private readonly rangeSize = 10000
 	) {}
 
 	async perform(time: Date, scanJob: ScanJob): Promise<Scan> {
 		console.time('scan');
-
-		this.logger.info('Starting scan', {
-			url: scanJob.url.value,
-			isStartOfChain: scanJob.isNewScanChainJob(),
-			chainInitDate: scanJob.chainInitDate
-		});
 
 		const scanSettingsOrError =
 			await this.scanJobSettingsFactory.determineSettings(scanJob);
@@ -49,13 +44,15 @@ export class Scanner {
 
 		const scanSettings = scanSettingsOrError.value;
 
-		this.logger.info('Scan settings', {
+		log('Starting scan fromLedger:', scanSettings.fromLedger, 'toLedger:', scanSettings.toLedger);
+
+		/*this.logger.info('Scan settings', {
 			url: scanJob.url.value,
 			fromLedger: scanSettings.fromLedger,
 			toLedger: scanSettings.toLedger,
 			concurrency: scanSettings.concurrency,
 			isSlowArchive: scanSettings.isSlowArchive
-		});
+		});*/
 
 		const scanResult = await this.scanInRanges(scanJob.url, scanSettings);
 		const scan = scanJob.createScanFromScanResult(
@@ -87,8 +84,16 @@ export class Scanner {
 		let alreadyScannedBucketHashes = new Set<string>();
 		let error: ScanError | undefined;
 
+		// calculate how many chunks (ranges) we’ll scan in total
+		const totalRanges = Math.ceil(
+			(scanSettings.toLedger - scanSettings.fromLedger) / this.rangeSize
+		);
+
+		let completedRanges = 0;
+		let cumulativeDurationMs = 0;
+
 		while (rangeFromLedger < scanSettings.toLedger && !error) {
-			console.time('range_scan');
+			const startMs = Date.now();
 			const rangeResult = await this.rangeScanner.scan(
 				url,
 				scanSettings.concurrency,
@@ -98,8 +103,31 @@ export class Scanner {
 				latestLedgerHeader.hash,
 				alreadyScannedBucketHashes
 			);
-			console.timeEnd('range_scan');
 
+			const durationMs = Date.now() - startMs;
+            cumulativeDurationMs += durationMs;
+			completedRanges++;
+
+			// compute ETA
+			const avgMs = cumulativeDurationMs / completedRanges;
+			const remainingRanges = totalRanges - completedRanges;
+			let etaMs = avgMs * remainingRanges;
+
+			const hours = Math.floor(etaMs / 3_600_000);
+			etaMs -= hours * 3_600_000;
+			const minutes = Math.floor(etaMs / 60_000);
+			const seconds = Math.round((etaMs % 60_000) / 1000);
+
+			// build ETA string
+			const etaParts = [];
+			if (hours > 0) etaParts.push(`${hours}h`);
+			if (minutes > 0 || hours > 0) etaParts.push(`${minutes}m`);
+			etaParts.push(`${seconds}s`);
+			const etaStr = etaParts.join(' ');
+
+			// log progress + ETA
+			const pct = ((completedRanges / totalRanges) * 100).toFixed(1);
+			log(`Progress ${pct}% , ETA ~${etaStr}`);
 			if (rangeResult.isErr()) {
 				error = rangeResult.error;
 			} else {

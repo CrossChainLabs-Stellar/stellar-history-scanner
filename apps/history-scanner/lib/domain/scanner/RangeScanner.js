@@ -56,6 +56,7 @@ const https = __importStar(require("https"));
 const CategoryScanner_1 = require("./CategoryScanner");
 const BucketScanner_1 = require("./BucketScanner");
 const di_types_1 = require("../../infrastructure/di/di-types");
+const logger_1 = require("./logger");
 /**
  * Scan a specific range of a history archive
  */
@@ -75,12 +76,7 @@ let RangeScanner = class RangeScanner {
         this.exceptionLogger = exceptionLogger;
     }
     async scan(baseUrl, concurrency, toLedger, fromLedger, latestScannedLedger, latestScannedLedgerHeaderHash = null, alreadyScannedBucketHashes = new Set()) {
-        this.logger.info('Starting range scan', {
-            history: baseUrl.value,
-            toLedger: toLedger,
-            fromLedger: fromLedger,
-            concurrency: concurrency
-        });
+        (0, logger_1.logWithTimestamp)('Range [', fromLedger, ':', toLedger, ']');
         const httpAgent = new http.Agent({
             keepAlive: true,
             scheduling: 'fifo'
@@ -123,27 +119,21 @@ let RangeScanner = class RangeScanner {
         });
     }
     async scanHASFilesAndReturnBucketHashes(scanState) {
-        this.logger.info('Scanning HAS files');
-        console.time('HAS');
+        (0, logger_1.logWithTimestamp)('Scanning HAS files');
         const scanHASResult = await this.categoryScanner.scanHASFilesAndReturnBucketHashes(scanState);
         if (scanHASResult.isErr()) {
             return (0, neverthrow_1.err)(scanHASResult.error);
         }
-        console.timeEnd('HAS');
         return (0, neverthrow_1.ok)(scanHASResult.value);
     }
     async scanBucketFiles(scanState) {
-        console.time('bucket');
-        this.logger.info(`Scanning ${scanState.bucketHashesToScan.size} buckets`);
+        (0, logger_1.logWithTimestamp)('Scanning', scanState.bucketHashesToScan.size, 'buckets');
         const scanBucketsResult = await this.bucketScanner.scan(scanState, true);
-        console.timeEnd('bucket');
         return scanBucketsResult;
     }
     async scanCategories(scanState) {
-        console.time('category');
-        this.logger.info('Scanning other category files');
+        (0, logger_1.logWithTimestamp)('Scanning other category files');
         const scanOtherCategoriesResult = await this.categoryScanner.scanOtherCategories(scanState, true);
-        console.timeEnd('category');
         return scanOtherCategoriesResult;
     }
 };

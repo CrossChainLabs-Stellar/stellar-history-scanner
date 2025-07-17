@@ -12,6 +12,7 @@ import { BucketScanner } from './BucketScanner';
 import { ScanError } from '../scan/ScanError';
 import { LedgerHeader } from './Scanner';
 import { TYPES } from '../../infrastructure/di/di-types';
+import { logWithTimestamp as log } from './logger';
 
 export interface RangeScanResult {
 	latestLedgerHeader?: LedgerHeader;
@@ -40,12 +41,7 @@ export class RangeScanner {
 		latestScannedLedgerHeaderHash: string | null = null,
 		alreadyScannedBucketHashes = new Set<string>()
 	): Promise<Result<RangeScanResult, ScanError>> {
-		this.logger.info('Starting range scan', {
-			history: baseUrl.value,
-			toLedger: toLedger,
-			fromLedger: fromLedger,
-			concurrency: concurrency
-		});
+		log('Range [', fromLedger, ':', toLedger, ']');
 
 		const httpAgent = new http.Agent({
 			keepAlive: true,
@@ -131,8 +127,7 @@ export class RangeScanner {
 			ScanError
 		>
 	> {
-		this.logger.info('Scanning HAS files');
-		console.time('HAS');
+		log('Scanning HAS files');
 
 		const scanHASResult =
 			await this.categoryScanner.scanHASFilesAndReturnBucketHashes(scanState);
@@ -141,19 +136,15 @@ export class RangeScanner {
 			return err(scanHASResult.error);
 		}
 
-		console.timeEnd('HAS');
-
 		return ok(scanHASResult.value);
 	}
 
 	private async scanBucketFiles(
 		scanState: BucketScanState
 	): Promise<Result<void, ScanError>> {
-		console.time('bucket');
-		this.logger.info(`Scanning ${scanState.bucketHashesToScan.size} buckets`);
+		log('Scanning', scanState.bucketHashesToScan.size,'buckets');
 
 		const scanBucketsResult = await this.bucketScanner.scan(scanState, true);
-		console.timeEnd('bucket');
 
 		return scanBucketsResult;
 	}
@@ -161,13 +152,11 @@ export class RangeScanner {
 	private async scanCategories(
 		scanState: CategoryScanState
 	): Promise<Result<LedgerHeader | undefined, ScanError>> {
-		console.time('category');
-		this.logger.info('Scanning other category files');
+		log('Scanning other category files');
 
 		const scanOtherCategoriesResult =
 			await this.categoryScanner.scanOtherCategories(scanState, true);
 
-		console.timeEnd('category');
 
 		return scanOtherCategoriesResult;
 	}
